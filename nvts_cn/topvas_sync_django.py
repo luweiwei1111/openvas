@@ -163,9 +163,11 @@ class SyncData:
             if count % 1000 == 0:
                 print('Progress:%d'%(count))
             if ret == 1:
-                src_info_details = sql_select_exec("SELECT family, affected, summary, solution, insight, vuldetect, impact, synopsis, description, exploitability_ease, risk_factor, metasploit_name, d2_elliot_name  FROM blog_blogspost WHERE oid = '%s' and name = '%s');" % (oid, name))[0];
+                src_info_details = Sql_django.sql_select_exec("SELECT family, affected, summary, solution, insight, vuldetect, impact, synopsis, description, exploitability_ease, risk_factor, metasploit_name, d2_elliot_name  FROM blog_blogspost WHERE oid = '%s' and name = '%s';" % (oid, name))[0];
+                #print(src_info_results)
+                #src_info_details = src_info_results[0]
                 #1.family
-                family_src = src_info_details[1]
+                family_src = src_info_details[0]
                 if family_src != '' and family_src == family:
                     family_cn = self.sqliteReplace(cn_info[4])
                 else:
@@ -176,7 +178,7 @@ class SyncData:
                     change_flag = True
 
                 #2.affected 
-                affected_src = src_info_details[2]
+                affected_src = src_info_details[1]
                 if affected_src != '' and affected_src == affected:
                     affected_cn = self.sqliteReplace(cn_info[6])
                 else:
@@ -187,7 +189,7 @@ class SyncData:
                     change_flag = True
 
                 #3.summary
-                summary_src = src_info_details[3]
+                summary_src = src_info_details[2]
                 if summary_src != '' and summary_src == summary:
                     summary_cn = self.sqliteReplace(cn_info[8])
                 else:
@@ -198,7 +200,7 @@ class SyncData:
                     change_flag = True
 
                 #4.solution
-                solution_src = src_info_details[4]
+                solution_src = src_info_details[3]
                 if solution_src != '' and solution_src == solution:
                     solution_cn = self.sqliteReplace(cn_info[10])
                 else:
@@ -209,7 +211,7 @@ class SyncData:
                     change_flag = True
 
                 #5.insight
-                insight_src = src_info_details[5]
+                insight_src = src_info_details[4]
                 if insight_src != '' and insight_src == insight:
                     insight_cn = self.sqliteReplace(cn_info[12])
                 else:
@@ -220,7 +222,7 @@ class SyncData:
                     change_flag = True
 
                 #6.vuldetect
-                vuldetect_src = src_info_details[6]
+                vuldetect_src = src_info_details[5]
                 if vuldetect_src != '' and vuldetect_src == vuldetect:
                     vuldetect_cn = self.sqliteReplace(cn_info[14])
                 else:
@@ -231,7 +233,7 @@ class SyncData:
                     change_flag = True
 
                 #7.impact
-                impact_src = src_info_details[7]
+                impact_src = src_info_details[6]
                 if impact_src != '' and impact_src == impact:
                     impact_cn = self.sqliteReplace(cn_info[16])
                 else:
@@ -242,7 +244,7 @@ class SyncData:
                     change_flag = True
                 
                 #8.synopsis
-                synopsis_src = src_info_details[8]
+                synopsis_src = src_info_details[7]
                 if synopsis_src != '' and synopsis_src == synopsis:
                     synopsis_cn = self.sqliteReplace(cn_info[18])
                 else:
@@ -253,7 +255,7 @@ class SyncData:
                     change_flag = True
                 
                 #9.description
-                description_src = src_info_details[9]
+                description_src = src_info_details[8]
                 if description_src != '' and description_src == description:
                     description_cn = self.sqliteReplace(cn_info[20])
                 else:
@@ -264,7 +266,7 @@ class SyncData:
                     change_flag = True
 
                 #10.exploitability_ease
-                exploitability_ease_src = src_info_details[10]
+                exploitability_ease_src = src_info_details[9]
                 if exploitability_ease_src != '' and exploitability_ease_src == exploitability_ease:
                     exploitability_ease_cn = self.sqliteReplace(cn_info[22])
                 else:
@@ -275,7 +277,7 @@ class SyncData:
                     change_flag = True
 
                 #11.risk_factor
-                risk_factor_src = src_info_details[11]
+                risk_factor_src = src_info_details[10]
                 if risk_factor_src != '' and risk_factor_src == risk_factor:
                     risk_factor_cn = self.sqliteReplace(cn_info[24])
                 else:
@@ -286,7 +288,7 @@ class SyncData:
                     change_flag = True
 
                 #12.metasploit_name
-                metasploit_name_src = src_info_details[12]
+                metasploit_name_src = src_info_details[11]
                 if metasploit_name_src != '' and metasploit_name_src == metasploit_name:
                     metasploit_name_cn = self.sqliteReplace(cn_info[26])
                 else:
@@ -297,7 +299,7 @@ class SyncData:
                     change_flag = True
 
                 #13.d2_elliot_name
-                d2_elliot_name_src = src_info_details[13]
+                d2_elliot_name_src = src_info_details[12]
                 if d2_elliot_name_src != '' and d2_elliot_name_src == d2_elliot_name:
                     d2_elliot_name_cn = self.sqliteReplace(cn_info[28])
                 else:
@@ -307,7 +309,7 @@ class SyncData:
                 if d2_elliot_name_src != '' and d2_elliot_name_src != d2_elliot_name:
                     change_flag = True
 
-                if update_flag == True:
+                if change_flag == True:
                     is_change = '0'
                 else:
                     is_change = '1'
