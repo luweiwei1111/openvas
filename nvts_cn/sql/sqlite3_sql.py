@@ -19,6 +19,17 @@ class Sql_topvas:
         return cur_tp.fetchall()
 
     @classmethod
+    def select_nvts_en(cls, oid):
+        sql = "select id, name, family, tag from nvts where oid='%s';"%(oid)
+
+        print(sql)
+        try:
+            cur_tp.execute(sql)
+        except:
+            print('#select sql error:' + sql)
+        return cur_tp.fetchall()
+
+    @classmethod
     def sql_exec(cls, sql):
 
         print(sql)

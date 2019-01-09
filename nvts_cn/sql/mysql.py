@@ -83,6 +83,19 @@ class MySql:
         return cursor.fetchall()
 
     @classmethod
+    def select_nvts_cn_infos(cls, oid):
+        sql = "SELECT name, family_cn, tag from nvts_cn where oid=%(oid)s"
+        value = {
+            'oid': oid
+        }
+        #print(sql)
+        try:
+            cursor.execute(sql, value)
+        except:
+            print('#ERROR:sql error:' + sql)
+        return cursor.fetchall()
+
+    @classmethod
     def select_nvts_cn_fortvid(cls):
         sql = "SELECT oid, creation_time, family, category from nvts_cn;"
 
