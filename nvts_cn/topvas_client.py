@@ -134,7 +134,7 @@ class WebUI:
             "id" : id_nvt,
             "oid": oid,
             "name": name,
-            "name_cn": "",
+            "name_cn": name_cn,
             "tag": tag,
             "cn_ok": "0",
             "summary": summary,
@@ -163,7 +163,7 @@ class WebUI:
             "d2_elliot_name_cn": d2_elliot_name_cn,
             "family": family,
             "family_cn": family_cn,
-            "is_change": "0",
+            "is_change": "1",
             }
 
     def data_to_dict(self, data, interval_kv, interval_dict):
